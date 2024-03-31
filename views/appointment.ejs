@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="en">
+<%- include('layouts/head'); -%>
+
+    <body>
+        <!-- Navigation-->
+        <%- include( 'layouts/navigation'); -%>
+
+            <!-- Page Header-->
+            <header class="masthead" style="background-image: url('assets/img/appointment.jpg')">
+                <div class="container position-relative px-4 px-lg-5">
+                    <div class="row gx-4 gx-lg-5 justify-content-center">
+                        <div class="col-md-10 col-lg-8 col-xl-7">
+                            <div class="site-heading">
+                                <h1>Appointment</h1>
+                                <span class="subheading">DriveTest Booking Kiosk</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </header>
+
+            <!-- Main Content -->
+            <div class="container mb-3">
+                <form class="row g-3 needs-validation" action="/appointment/date" method="POST" novalidate>
+                    <h2>Assign Appointment Slots</h2>
+                    <div class="col-md-3">
+                        <!-- <label for="date" class="form-label">Select Date</label> -->
+                        <input type="date" class="form-select" name="date" id="date" value="<%= date %>" required />
+                        </select>
+                        <div class="invalid-feedback">Please select a date.</div>
+                    </div>
+                    <div class="col-12 mb-5">
+                        <button class="btn btn-primary" type="submit">Select Date</button>
+                    </div>
+                </form>
+
+                <% if ( date != null) { %>
+                    <form class="row g-3 needs-validation" action="/appointment/setTimes/<%= date %>" method="POST" novalidate>
+                        <div class="inner-container">
+                            <!-- <div class="form-label" style="font-size: 20px;">Select Slots
+                    </div> -->
+                            <ul class="ks-cboxtags">
+                                <li><input type="checkbox" id="slot1" name="slot1" class="form-select" value="slot1" <% if (slot1) { %> disabled
+                                    <%  } %> /><label for="slot1">09:00AM to 09:30AM</label></li>
+                                <li><input type="checkbox" id="slot2" name="slot2" class="form-select" value="slot2" <% if (slot2) { %> disabled
+                                    <%  } %>><label for="slot2">09:30AM to 10:00AM</label></li>
+                                <li><input type="checkbox" id="slot3" name="slot3" class="form-select" value="slot3" <% if (slot3) { %> disabled
+                                    <%  } %>><label for="slot3">10:00AM to 10:30AM</label></li>
+                                <li><input type="checkbox" id="slot4" name="slot4" class="form-select" value="slot4" <% if (slot4) { %> disabled
+                                    <%  } %>><label for="slot4">10:30AM to 11:00AM</label></li>
+                                <li><input type="checkbox" id="slot5" name="slot5" class="form-select" value="slot5" <% if (slot5) { %> disabled
+                                    <%  } %>><label for="slot5">11:00AM to 11:30AM</label></li>
+                                <li><input type="checkbox" id="slot6" name="slot6" class="form-select" value="slot6" <% if (slot6) { %> disabled
+                                    <%  } %>><label for="slot6">11:30AM to 12:00PM</label></li>
+                                <li><input type="checkbox" id="slot7" name="slot7" class="form-select" value="slot7" <% if (slot7) { %> disabled
+                                    <%  } %>><label for="slot7">12:00PM to 12:30PM</label></li>
+                                <li><input type="checkbox" id="slot8" name="slot8" class="form-select" value="slot8" <% if (slot8) { %> disabled
+                                    <%  } %>><label for="slot8">12:30PM to 01:00PM</label></li>
+                                <li><input type="checkbox" id="slot9" name="slot9" class="form-select" value="slot9" <% if (slot9) { %> disabled
+                                    <%  } %>><label for="slot9">01:00PM to 01:30PM</label></li>
+                                <li class="ks-selected"><input type="checkbox" name="slot10" id="slot10" class="form-select" value="slot10" <% if (slot10) { %> disabled
+                                    <%  } %>><label for="slot10">01:30PM to
+                            02:00PM</label></li>
+
+                            </ul>
+
+                        </div>
+
+                        <div class="col-12 mb-3">
+                            <button class="btn btn-primary" type="submit">Create Time Slots</button>
+                        </div>
+                    </form>
+                    <%  } %>
+
+            </div>
+            <!-- Footer-->
+            <%- include('layouts/footer'); -%>
+                <!-- Bootstrap core JS-->
+                <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
+    </body>
+
+</html>
+
+<script>
+    // Set minimum date of today for the date input
+    (function() {
+        document.getElementById("date").min = new Date().toJSON().split('T')[0];
+    })();
+
+    (function() {
+        console.log(document.getElementById("date"))
+    })();
+    // Example starter JavaScript for disabling form submissions if there are invalid fields
+    (function() {
+        "use strict";
+
+        // Fetch all the forms we want to apply custom Bootstrap validation styles to
+        var forms = document.querySelectorAll(".needs-validation");
+
+        // Loop over them and prevent submission
+        Array.prototype.slice.call(forms).forEach(function(form) {
+            form.addEventListener(
+                "submit",
+                function(event) {
+                    if (!form.checkValidity()) {
+                        event.preventDefault();
+                        event.stopPropagation();
+                    }
+                    form.classList.add("was-validated");
+                },
+                false
+            );
+        });
+    })();
+</script>

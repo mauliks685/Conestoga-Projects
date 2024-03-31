@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+  <%- include('layouts/head'); -%>
+
+  <body>
+    <!-- Navigation-->
+    <%- include('layouts/navigation'); -%>
+
+    <!-- Page Header-->
+    <header class="masthead" style="background-image: url('assets/img/g-background.jpg')">
+      <div class="container position-relative px-4 px-lg-5">
+        <div class="page-heading">
+          <h1>Get Your 'G' Today</h1>
+        </div>
+      </div>
+    </header>
+
+    <!-- Page Content -->
+    <% if (user.firstName != "default") { %> <%- include('layouts/gdisplay', {user: user}) -%> <%
+    if(user.g2Exam.isPassed === true && !user.gExam.appointmentID) { %> <%- include('layouts/bookAppointmentg', { date:
+    date }); -%> <% } else if(appointment){%>
+    <div class="container position-relative px-4 px-lg-5">
+      <div class="page-heading">
+        <h1>Hey, <%= appointment.firstName %></h1>
+        Your appointment for <b>G Exam</b> is booked on <b><%= appointment.date.toISOString().split('T')[0] %></b>
+        and time is
+        <b><%= appointment.time %></b>
+      </div>
+    </div>
+    <br /><br />
+    <% } else if (user && user.gExam.isPassed === true) { %>
+    <div class="container position-relative px-4 px-lg-5">
+      <div class="page-heading">
+        <h1>Hey, <%= user.firstName %></h1>
+        You have passed the exam.
+        <br />
+        Comment: <b><%= user.g2Exam.comment %></b>
+      </div>
+    </div>
+    <% } %> <% } else if (user && user.g2Exam.isPassed === true) { %> <%} else { %>
+    <div class="container position-relative px-4 px-lg-5">
+      <div class="page-heading">
+        <h1>Hello, <%= user.userName %></h1>
+        <h5 class="">Please fill your G2 form!</h5>
+      </div>
+    </div>
+    <% } %>
+    <!-- Footer-->
+    <%- include('layouts/footer'); -%>
+  </body>
+</html>

@@ -1,0 +1,93 @@
+<div class="container mb-3">
+    <form class="row g-3 needs-validation" action="/bookAppointment/date" method="POST" novalidate>
+        <h2>Book Appointment Slots</h2>
+        <div class="col-md-3">
+            <!-- <label for="date" class="form-label">Select Date</label> -->
+            <input type="date" class="form-select" name="date" id="date" value="<%= date %>" required />
+            </select>
+            <div class="invalid-feedback">Please select a date.</div>
+        </div>
+        <div class="col-12 mb-5">
+            <button class="btn btn-primary" type="submit">Select Date</button>
+        </div>
+    </form>
+
+    <% if ( date != null) { %>
+        <form class="row g-3 needs-validation" action="/bookAppointment/setTimes" method="POST" novalidate>
+            <div class="inner-container">
+                <ul class="ks-cboxtags">
+                    <% if (slot1 != "" ) { %>
+                        <li><input type="radio" id="slot1" name="time" class="form-select" value="<%= slot1  %>" /><label for="slot1">09:00AM to 09:30AM</label></li>
+                        <%  } %>
+                            <% if (slot2 != "" ) { %>
+                                <li><input type="radio" id="slot2" name="time" class="form-select" value="<%= slot2  %> " /><label for="slot2">09:30AM to 10:00AM</label></li>
+                                <%  } %>
+                                    <% if (slot3 != "" ) { %>
+                                        <li><input type="radio" id="slot3" name="time" class="form-select" value="<%= slot3 %>" /><label for="slot3">10:00AM to 10:30AM</label></li>
+                                        <%  } %>
+                                            <% if (slot4 != "" ) { %>
+                                                <li><input type="radio" id="slot4" name="time" class="form-select" value="<%= slot4 %>" /><label for="slot4">10:30AM to 11:00AM</label></li>
+                                                <%  } %>
+                                                    <% if (slot5 != "" ) { %>
+                                                        <li><input type="radio" id="slot5" name="time" class="form-select" value="<%= slot5 %>" /><label for="slot5">11:00AM to 11:30AM</label></li>
+                                                        <%  } %>
+                                                            <% if (slot6 != "" ) { %>
+                                                                <li><input type="radio" id="slot6" name="time" class="form-select" value="<%= slot6 %>" /><label for="slot6">11:30AM to 12:00PM</label></li>
+                                                                <%  } %>
+                                                                    <% if (slot7 != "" ) { %>
+                                                                        <li><input type="radio" id="slot7" name="time" class="form-select" value="<%= slot7 %>" /><label for="slot7">12:00PM to 12:30PM</label></li>
+                                                                        <%  } %>
+                                                                            <% if (slot8 != "" ) { %>
+                                                                                <li><input type="radio" id="slot8" name="time" class="form-select" value="<%= slot8 %>" /><label for="slot8">12:30PM to 01:00PM</label></li>
+                                                                                <%  } %>
+                                                                                    <% if (slot9 != "" ) { %>
+                                                                                        <li><input type="radio" id="slot9" name="time" class="form-select" value="<%= slot9 %>" /><label for="slot9">01:00PM to 01:30PM</label></li>
+                                                                                        <%  } %>
+                                                                                            <% if (slot10 != "" ) { %>
+                                                                                                <li><input type="radio" id="slot10" name="time" class="form-select" value="<%= slot10 %>" /><label for="slot10">01:30PM to
+                        02:00PM</label></li>
+                                                                                                <%  } %>
+                </ul>
+
+            </div>
+
+            <div class="col-12 mb-3">
+                <button class="btn btn-primary" type="submit">Book Slot</button>
+            </div>
+        </form>
+        <%  } %>
+
+</div>
+
+<script>
+    // Set minimum date of today for the date input
+    (function() {
+        document.getElementById("date").min = new Date().toJSON().split('T')[0];
+    })();
+
+    (function() {
+        console.log(document.getElementById("date"))
+    })();
+    // Example starter JavaScript for disabling form submissions if there are invalid fields
+    (function() {
+        "use strict";
+
+        // Fetch all the forms we want to apply custom Bootstrap validation styles to
+        var forms = document.querySelectorAll(".needs-validation");
+
+        // Loop over them and prevent submission
+        Array.prototype.slice.call(forms).forEach(function(form) {
+            form.addEventListener(
+                "submit",
+                function(event) {
+                    if (!form.checkValidity()) {
+                        event.preventDefault();
+                        event.stopPropagation();
+                    }
+                    form.classList.add("was-validated");
+                },
+                false
+            );
+        });
+    })();
+</script>

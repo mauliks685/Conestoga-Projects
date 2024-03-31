@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<%- include('layouts/head'); -%>
+
+<body>
+    <!-- Navigation-->
+    <%- include('layouts/navigation'); -%>
+
+    <!-- Page Header-->
+    <header class="masthead" style="background-image: url('assets/img/g2-bg.jpg')">
+        <div class="container position-relative px-4 px-lg-5">
+            <div class="page-heading">
+                <h1>Account</h1>
+            </div>
+        </div>
+    </header>
+
+    <% if ( user) { %>
+    <!-- G2 Form-->
+    <%- include('layouts/g2form'); -%>
+    <% } %>
+
+    <!-- Footer-->
+    <%- include('layouts/footer'); -%>
+</body>
+
+</html>
